@@ -1,7 +1,43 @@
+import ImageContainer from '@/components/ImageContainer'
+import { getMetaData, getPhotos } from '@/queries/nasa'
+import { Rover } from '@/types'
 import Head from 'next/head'
 import React, { FC } from 'react'
+import { useQuery } from 'react-query'
+import styled from 'styled-components'
+
+type RoverPhotoProps = {
+  rover: Rover
+  maxSol: number
+}
+
+const RoverPhoto: FC<RoverPhotoProps> = ({ rover, maxSol }) => {
+  const photos = useQuery(['photos', rover, maxSol], () =>
+    getPhotos(1, rover, maxSol)
+  )
+
+  return photos.status === 'success' ? (
+    <ImageContainer>
+      <Image src={photos.data.photos[0].img_src} role="none" />
+    </ImageContainer>
+  ) : (
+    <>loading</>
+  )
+}
+
+const Image = styled.img`
+  width: 100%;
+`
 
 const Home: FC = () => {
+  const meta = useQuery(
+    ['meta', 'perseverance'],
+    () => getMetaData('perseverance'),
+    { retry: 1 }
+  )
+
+  const maxSol = meta.status === 'success' && meta.data.photo_manifest.max_sol
+
   return (
     <>
       <Head>
@@ -10,9 +46,31 @@ const Home: FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main />
+      <main>
+        <PhotoGrid>
+          {maxSol && <RoverPhoto rover="perseverance" maxSol={maxSol} />}
+          {maxSol && <RoverPhoto rover="perseverance" maxSol={maxSol} />}
+          {maxSol && <RoverPhoto rover="perseverance" maxSol={maxSol} />}
+          {maxSol && <RoverPhoto rover="perseverance" maxSol={maxSol} />}
+        </PhotoGrid>
+      </main>
     </>
   )
 }
 
 export default Home
+
+const PhotoGrid = styled.div`
+  display: grid;
+  gap: 4px 8px;
+  margin: auto;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto auto;
+  width: 80%;
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    width: 60%;
+  }
+`
