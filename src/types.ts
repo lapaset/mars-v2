@@ -3,7 +3,7 @@ type TMonth = `${number}${number}`
 type TDay = `${number}${number}`
 type TDateISODate = `${TYear}-${TMonth}-${TDay}`
 
-export type Rover = 'perseverance' | 'curiosity'
+export type Rover = 'perseverance' | 'curiosity' | 'opportunity' | 'spirit'
 
 export type Photo = {
   id: number
