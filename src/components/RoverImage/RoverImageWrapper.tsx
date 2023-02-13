@@ -12,7 +12,9 @@ type RoverImageWrapperProps = {
 
 const RoverImageWrapper: FC<RoverImageWrapperProps> = ({ rover }) => {
   const meta = useQuery(['meta', rover], () => getMetaData(rover), { retry: 1 })
-  const maxSol = meta.status === 'success' && meta.data.photo_manifest.max_sol
+  const maxSol =
+    (meta.status === 'success' && meta?.data?.photo_manifest?.max_sol) ||
+    undefined
 
   return (
     <ImageContainer>
