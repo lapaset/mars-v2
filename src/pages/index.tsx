@@ -10,6 +10,7 @@ const Home: FC = () => {
         <title>Mars rover photos</title>
         <meta name="description" content="Latest photos from NASA Api" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="favicon.svg" />
       </Head>
       <Main>
         <h1>Nasa Rover Photos</h1>

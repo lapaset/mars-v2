@@ -18,6 +18,8 @@ const RoverImage: FC<RoverImageProps> = ({ rover, maxSol }) => {
   const latestPhoto =
     photos.status === 'success' && photos?.data?.photos[0]?.img_src
 
+  console.log('photos status', photos?.status)
+
   return latestPhoto ? (
     <Image src={latestPhoto} role="none" />
   ) : (
