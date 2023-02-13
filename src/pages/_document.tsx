@@ -9,7 +9,7 @@ const Document = () => {
           href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="favicon.svg" />
       </Head>
       <body>
         <Main />
