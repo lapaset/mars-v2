@@ -1,8 +1,8 @@
 import { photosPerPage } from '@/constants'
 import { Photo, Rover } from '@/types'
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
+const baseUrl = process.env.BASE_URL
+const apiKey = process.env.API_KEY
 
 export const getMetaData = async (rover: Rover) => {
   const result = await fetch(`${baseUrl}/manifests/${rover}?api_key=${apiKey}`)
