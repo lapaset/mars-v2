@@ -1,12 +1,14 @@
 :root {
   --background: #E1F2F7;
-  --text-color: black;
+  --image-background: black;
+  --text-color: #E1F2F7;
   --link-color: #EF0D50;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: black;
+    --image-background: black;
     --text-color: #E1F2F7;
     --link-color: #EF0D50;
   }
@@ -24,14 +26,31 @@ body {
   overflow-x: hidden;
 }
 
-body {
+body::before {
+  position: fixed;
+  content: '';
   background: var(--background);
+  filter: url(#bgfilter);
+  inset: -1px;
+  z-index: -1;
+}
+
+body::after {
+  position: fixed;
+  content: '';
+  background: radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+  inset: -1px;
+  z-index: -1;
+}
+
+h1 {
+  font-family: 'Unbounded', cursive;
+  color: var(--text-color);
+  font-size: 3em;
+  margin: 40px 0;
 }
 
 a {
   color: var(--text-color);
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
 }
