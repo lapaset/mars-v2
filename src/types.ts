@@ -5,6 +5,28 @@ type TDateISODate = `${TYear}-${TMonth}-${TDay}`
 
 export type Rover = 'perseverance' | 'curiosity' | 'opportunity' | 'spirit'
 
+type PhotosMeta = {
+  sol: number
+  earth_date: TDateISODate
+  total_photos: number
+  cameras: string[]
+}
+
+export type MetaData = {
+  name: string
+  landing_date: TDateISODate
+  launch_date: TDateISODate
+  status: string
+  max_sol: number
+  max_date: TDateISODate
+  total_photos: number
+  photos: PhotosMeta[]
+}
+
+export type RoverData = Omit<MetaData, 'photos'> & {
+  latest_photo: string
+}
+
 export type Photo = {
   id: number
   sol: number

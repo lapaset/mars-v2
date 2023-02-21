@@ -1,4 +1,5 @@
 import RoverImageWrapper from '@/components/RoverImage/RoverImageWrapper'
+import roverData from '@/roverData'
 import Head from 'next/head'
 import React, { FC } from 'react'
 import styled from 'styled-components'
@@ -17,8 +18,11 @@ const Home: FC = () => {
         <PhotoGrid>
           <RoverImageWrapper rover="perseverance" />
           <RoverImageWrapper rover="curiosity" />
-          <RoverImageWrapper rover="opportunity" />
-          <RoverImageWrapper rover="spirit" />
+          <RoverImageWrapper
+            roverData={roverData.opportunity}
+            rover="opportunity"
+          />
+          <RoverImageWrapper roverData={roverData.spirit} rover="spirit" />
         </PhotoGrid>
       </Main>
     </>
@@ -42,7 +46,7 @@ const PhotoGrid = styled.div`
   grid-template-rows: auto auto auto auto;
   width: 80%;
   overflow: visible;
-  padding-bottom: 16px;
+  padding: 24px 24px 40px;
 
   @media only screen and (min-width: 600px) {
     grid-template-columns: auto auto;
