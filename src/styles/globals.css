@@ -1,17 +1,7 @@
 :root {
-  --background: #E1F2F7;
   --image-background: black;
   --text-color: #E1F2F7;
-  --link-color: #EF0D50;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: black;
-    --image-background: black;
-    --text-color: #E1F2F7;
-    --link-color: #EF0D50;
-  }
+  --link-color: #f19de4;
 }
 
 * {
@@ -23,6 +13,9 @@
 html,
 body {
   max-width: 100vw;
+  font-family: 'Unbounded';
+  font-weight: 400;
+  color: var(--text-color);
   overflow-x: hidden;
 }
 
@@ -51,6 +44,10 @@ h1 {
 }
 
 a {
-  color: var(--text-color);
+  color: var(--link-color);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

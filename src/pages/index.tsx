@@ -14,7 +14,7 @@ const Home: FC = () => {
         <link rel="icon" href="favicon.svg" />
       </Head>
       <Main>
-        <h1>Nasa Rover Photos</h1>
+        <h1>Greetings from Mars</h1>
         <PhotoGrid>
           <RoverImageWrapper rover="perseverance" />
           <RoverImageWrapper rover="curiosity" />
@@ -25,6 +25,17 @@ const Home: FC = () => {
           <RoverImageWrapper roverData={roverData.spirit} rover="spirit" />
         </PhotoGrid>
       </Main>
+      <Footer>
+        Photos from{' '}
+        <a href="https://api.nasa.gov/" title="Nasa Open Api">
+          NASA Open Api
+        </a>{' '}
+        © 2023{' '}
+        <a href="https://github.com/lapaset" title="github profile">
+          Liisa Lahti
+        </a>{' '}
+        (they/them)
+      </Footer>
     </>
   )
 }
@@ -54,4 +65,12 @@ const PhotoGrid = styled.div`
     width: 60%;
     max-width: 800px;
   }
+`
+
+const Footer = styled.footer`
+  position: sticky;
+  bottom: 0;
+  padding: 24px;
+  width: 100%;
+  text-align: center;
 `
