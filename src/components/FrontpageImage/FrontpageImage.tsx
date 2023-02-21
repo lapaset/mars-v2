@@ -1,20 +1,21 @@
 import { getMetaData } from '@/queries/nasa'
 import { Rover, RoverData } from '@/types'
+import Link from 'next/link'
 import React, { FC } from 'react'
 import { useQuery } from 'react-query'
 import styled from 'styled-components'
-import RoverImage from '.'
+import RoverImage from './RoverImage'
 import ImageContainer from '../ImageContainer'
 import LoadingIndicator from '../LoadingIndicator'
 
-type ActiveRoverImageProps = {
+type ActiveRoverFrontpageImageProps = {
   rover: Rover
 }
 
-const ActiveRoverImage: FC<ActiveRoverImageProps> = ({ rover }) => {
+const ActiveRoverFrontpageImage: FC<ActiveRoverFrontpageImageProps> = ({
+  rover,
+}) => {
   const meta = useQuery(['meta', rover], () => getMetaData(rover), { retry: 1 })
-
-  console.log('meta', meta)
 
   const maxSol =
     (meta.status === 'success' && meta?.data?.photo_manifest?.max_sol) ||
@@ -23,30 +24,33 @@ const ActiveRoverImage: FC<ActiveRoverImageProps> = ({ rover }) => {
   return maxSol === undefined ? (
     <LoadingIndicator />
   ) : (
-    <RoverImage rover={rover} maxSol={maxSol} />
+    <Anchor href={`${rover}?sol=${maxSol}`}>
+      <RoverImage rover={rover} maxSol={maxSol} />
+    </Anchor>
   )
 }
 
-type RoverImageWrapperProps = {
+type FrontpageImageProps = {
   rover: Rover
   roverData?: RoverData
 }
 
-const RoverImageWrapper: FC<RoverImageWrapperProps> = ({
-  rover,
-  roverData,
-}) => (
+const FrontpageImage: FC<FrontpageImageProps> = ({ rover, roverData }) => (
   <ImageContainer>
     {roverData ? (
       <Image src={roverData.latest_photo} alt={`latest photo from ${rover}`} />
     ) : (
-      <ActiveRoverImage rover={rover} />
+      <ActiveRoverFrontpageImage rover={rover} />
     )}
   </ImageContainer>
 )
+
+const Anchor = styled(Link)`
+  display: flex;
+`
 
 const Image = styled.img`
   width: 100%;
 `
 
-export default RoverImageWrapper
+export default FrontpageImage

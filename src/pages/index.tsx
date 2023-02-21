@@ -1,4 +1,4 @@
-import RoverImageWrapper from '@/components/RoverImage/RoverImageWrapper'
+import FrontpageImage from '@/components/FrontpageImage'
 import roverData from '@/roverData'
 import Head from 'next/head'
 import React, { FC } from 'react'
@@ -16,13 +16,13 @@ const Home: FC = () => {
       <Main>
         <h1>Greetings from Mars</h1>
         <PhotoGrid>
-          <RoverImageWrapper rover="perseverance" />
-          <RoverImageWrapper rover="curiosity" />
-          <RoverImageWrapper
+          <FrontpageImage rover="perseverance" />
+          <FrontpageImage rover="curiosity" />
+          <FrontpageImage
             roverData={roverData.opportunity}
             rover="opportunity"
           />
-          <RoverImageWrapper roverData={roverData.spirit} rover="spirit" />
+          <FrontpageImage roverData={roverData.spirit} rover="spirit" />
         </PhotoGrid>
       </Main>
       <Footer>
