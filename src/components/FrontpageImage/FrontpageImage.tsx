@@ -24,9 +24,9 @@ const ActiveRoverFrontpageImage: FC<ActiveRoverFrontpageImageProps> = ({
   return maxSol === undefined ? (
     <LoadingIndicator />
   ) : (
-    <Anchor href={`${rover}?sol=${maxSol}`}>
+    <StyledLink href={`${rover}?sol=${maxSol}`}>
       <RoverImage rover={rover} maxSol={maxSol} />
-    </Anchor>
+    </StyledLink>
   )
 }
 
@@ -45,7 +45,7 @@ const FrontpageImage: FC<FrontpageImageProps> = ({ rover, roverData }) => (
   </ImageContainer>
 )
 
-const Anchor = styled(Link)`
+const StyledLink = styled(Link)`
   display: flex;
 `
 
