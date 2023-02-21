@@ -46,3 +46,10 @@ export type Photo = {
     status: string
   }
 }
+
+export type Page = {
+  data: {
+    photos: Photo[]
+  }
+  nextPage: number | undefined
+}
