@@ -23,6 +23,7 @@ const Spinner = styled.div`
   position: relative;
   width: 80px;
   height: 80px;
+  margin: 40px;
 
   & div {
     position: absolute;
