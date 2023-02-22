@@ -46,7 +46,10 @@ const Main = styled.main`
   align-items: center;
   text-align: center;
   min-height: 80vh;
-  padding: 5% 0;
+
+  @media only screen and (min-width: 600px) {
+    padding: 5% 0;
+  }
 `
 
 const PhotoGrid = styled.div`
