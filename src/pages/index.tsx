@@ -1,5 +1,4 @@
 import FrontpageImage from '@/components/FrontpageImage'
-import roverData from '@/roverData'
 import Head from 'next/head'
 import React, { FC } from 'react'
 import styled from 'styled-components'
@@ -10,7 +9,10 @@ const Home: FC = () => {
       <Head>
         <title>Mars rover photos</title>
         <meta name="description" content="Latest photos from NASA Api" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
         <link rel="icon" href="favicon.svg" />
       </Head>
       <Main>
@@ -18,11 +20,6 @@ const Home: FC = () => {
         <PhotoGrid>
           <FrontpageImage rover="perseverance" />
           <FrontpageImage rover="curiosity" />
-          <FrontpageImage
-            roverData={roverData.opportunity}
-            rover="opportunity"
-          />
-          <FrontpageImage roverData={roverData.spirit} rover="spirit" />
         </PhotoGrid>
       </Main>
       <Footer>
@@ -55,7 +52,7 @@ const PhotoGrid = styled.div`
   gap: 16px;
   grid-template-columns: 100%;
   grid-template-rows: auto auto auto auto;
-  width: 80%;
+  width: 90%;
   overflow: visible;
   padding: 24px 24px 40px;
 

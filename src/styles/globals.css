@@ -1,4 +1,5 @@
 :root {
+  --background: black;
   --image-background: black;
   --text-color: #E1F2F7;
   --link-color: #f19de4;
@@ -13,27 +14,28 @@
 html,
 body {
   max-width: 100vw;
+  min-height: -webkit-fill-available;
   font-family: 'Unbounded';
   font-weight: 400;
   color: var(--text-color);
   overflow-x: hidden;
 }
 
-body::before {
+body::before,
+body::after {
   position: fixed;
+  inset: 0;
+  z-index: -1;
   content: '';
+}
+
+body::before {
   background: var(--background);
   filter: url(#bgfilter);
-  inset: -1px;
-  z-index: -1;
 }
 
 body::after {
-  position: fixed;
-  content: '';
   background: radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
-  inset: -1px;
-  z-index: -1;
 }
 
 h1 {
