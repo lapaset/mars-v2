@@ -43,7 +43,8 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
     const handleScroll = () => {
       if (
         bottomRef.current &&
-        bottomRef.current.getBoundingClientRect().top <= window.innerHeight &&
+        bottomRef.current.getBoundingClientRect().bottom - 10 <=
+          window.innerHeight &&
         hasNextPage &&
         !isLoading &&
         !isFetchingNextPage
@@ -75,7 +76,7 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
             )}
         </Container>
       )}
-      <div ref={bottomRef} />
+      <div ref={bottomRef}>{isFetchingNextPage && <LoadingIndicator />}</div>
     </Main>
   )
 }
@@ -101,7 +102,7 @@ const Container = styled.section`
   align-items: center;
   gap: 24px;
   margin: auto;
-  max-width: 80%;
+  max-width: 85%;
 `
 const ImageContainer = styled.div`
   display: flex;
@@ -119,7 +120,8 @@ const ImageContainer = styled.div`
 `
 
 const Image = styled.img`
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
 
   /*   @media screen and (min-width: 600px) {
     :hover {

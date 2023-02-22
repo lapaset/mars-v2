@@ -42,9 +42,11 @@ export default Home
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
+  min-height: 80vh;
+  padding: 5% 0;
 `
 
 const PhotoGrid = styled.div`
@@ -52,9 +54,9 @@ const PhotoGrid = styled.div`
   gap: 16px;
   grid-template-columns: 100%;
   grid-template-rows: auto auto auto auto;
-  width: 90%;
+  width: 85%;
   overflow: visible;
-  padding: 24px 24px 40px;
+  padding: 24px 0 32px;
 
   @media only screen and (min-width: 600px) {
     grid-template-columns: auto auto;
@@ -70,4 +72,8 @@ const Footer = styled.footer`
   padding: 24px;
   width: 100%;
   text-align: center;
+
+  @media only screen and (min-width: 600px) {
+    margin-top: 40px;
+  }
 `
