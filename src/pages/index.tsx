@@ -16,7 +16,6 @@ const Home: FC = () => {
         <link rel="icon" href="favicon.svg" />
       </Head>
       <Main>
-        <h1>Greetings from Mars</h1>
         <PhotoGrid>
           <FrontpageImage rover="perseverance" />
           <FrontpageImage rover="curiosity" />
@@ -42,30 +41,27 @@ export default Home
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 80vh;
-
-  @media only screen and (min-width: 600px) {
-    padding: 5% 0;
-  }
+  height: 90vh;
 `
 
 const PhotoGrid = styled.div`
+  position: relative;
   display: grid;
-  gap: 16px;
-  grid-template-columns: 100%;
-  grid-template-rows: auto auto auto auto;
-  width: 85%;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 32px;
+  width: 80%;
+  height: 90vh;
   overflow: visible;
   padding: 24px 0 32px;
 
   @media only screen and (min-width: 600px) {
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    width: 60%;
-    max-width: 800px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0;
+    height: 60vh;
   }
 `
 
@@ -77,6 +73,6 @@ const Footer = styled.footer`
   text-align: center;
 
   @media only screen and (min-width: 600px) {
-    margin-top: 40px;
+    position: absolute;
   }
 `

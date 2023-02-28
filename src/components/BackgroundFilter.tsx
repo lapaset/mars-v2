@@ -16,6 +16,7 @@ const BackgroundFilter: FC = () => (
 )
 
 const Svg = styled.svg`
+  display: block;
   width: 0;
   height: 0;
 `
