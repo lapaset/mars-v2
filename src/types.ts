@@ -1,7 +1,7 @@
 type TYear = `${number}${number}${number}${number}`
 type TMonth = `${number}${number}`
 type TDay = `${number}${number}`
-type TDateISODate = `${TYear}-${TMonth}-${TDay}`
+export type TDateISODate = `${TYear}-${TMonth}-${TDay}`
 
 export type Rover = 'perseverance' | 'curiosity' | 'opportunity' | 'spirit'
 
