@@ -44,7 +44,7 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
       if (
         bottomRef.current &&
         bottomRef.current.getBoundingClientRect().bottom - 10 <=
-          window.innerHeight &&
+        window.innerHeight &&
         hasNextPage &&
         !isLoading &&
         !isFetchingNextPage
@@ -75,13 +75,13 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
             {pages &&
               pages.map((page: Page) =>
                 page ? (
-                  page.data.photos.map((photo: Photo) => (
+                  page.data.photos.map((photo: Photo) => photo && (
                     <ImageContainer
                       key={photo.id}
                       onClick={() => toggleActive(photo.id)}
                       isActive={activePhoto === photo.id}
                     >
-                      <Image src={photo.img_src} alt="" />
+                      <Image src={photo.img_src} alt="" isActive={activePhoto === photo.id} />
                     </ImageContainer>
                   ))
                 ) : (
@@ -90,7 +90,7 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
               )}
           </Container>
         )}
-        <div ref={bottomRef}>{isFetchingNextPage && <LoadingIndicator />}</div>
+        <Loading ref={bottomRef}>{isFetchingNextPage && <LoadingIndicator />}</Loading>
       </Main>
     </>
   )
@@ -141,15 +141,28 @@ const ImageContainer = styled.div<{ isActive: boolean }>`
   overflow: hidden;
   background: #0f000f;
   width: 100%;
+  align-self: stretch;
 
   @media screen and (min-width: 600px) {
-    width: ${({ isActive }) => (isActive ? '100%' : 'calc(50% - 8px)')};
+    width: calc(50% - 8px);
+    ${({ isActive }) => (isActive ? `
+      width: 100%;
+      box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.4);
+      ` : '')}
   }
 `
 
-const Image = styled.img`
-  width: 100%;
-  border: 2px solid white;
-  box-shadow: 0 -2px 6px white;
-  cursor: pointer;
+const Image = styled.img<{ isActive: boolean }>`
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+
+  @media screen and (min-width: 600px) {
+    cursor: pointer;
+    border: ${({ isActive }) => isActive ? `4px solid black;` : ''};
+  }
+`
+
+const Loading = styled.div`
+  text-align: center;
 `

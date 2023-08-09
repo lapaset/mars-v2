@@ -46,7 +46,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   transition: width 1s, height 1s;
   border: 2px solid white;
-  box-shadow: 0 -3px 8px white;
+  box-shadow: 0 -3px 8px rgba(255, 255, 255, 0.4);
 
   p {
     position: relative;
