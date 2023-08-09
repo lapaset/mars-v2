@@ -16,6 +16,7 @@ type RoverPhotosProps = {
 const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
   const [activePhoto, setActivePhoto] = useState<number | null>()
   const bottomRef = useRef<HTMLDivElement | null>(null)
+  const activePhotoRef = useRef<HTMLImageElement | null>(null)
   const router = useRouter()
   const { sol } = router.query
   const solNumber = (typeof sol === 'string' && parseInt(sol)) || 0
@@ -56,6 +57,12 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [fetchNextPage, hasNextPage, isLoading, isFetchingNextPage])
 
+  useEffect(() => {
+    if (activePhotoRef.current) {
+      activePhotoRef.current.scrollIntoView()
+    }
+  }, [activePhoto])
+
   const earthDate = (pages && pages[0].data.photos[0].earth_date) || undefined
 
   const toggleActive = (photoId: number) =>
@@ -81,7 +88,12 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
                       onClick={() => toggleActive(photo.id)}
                       isActive={activePhoto === photo.id}
                     >
-                      <Image src={photo.img_src} alt="" isActive={activePhoto === photo.id} />
+                      <Image
+                        src={photo.img_src}
+                        alt=""
+                        isActive={activePhoto === photo.id}
+                        ref={activePhoto === photo.id ? activePhotoRef : undefined}
+                      />
                     </ImageContainer>
                   ))
                 ) : (
