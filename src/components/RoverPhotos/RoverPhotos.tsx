@@ -45,7 +45,7 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
       if (
         bottomRef.current &&
         bottomRef.current.getBoundingClientRect().bottom - 10 <=
-        window.innerHeight &&
+          window.innerHeight &&
         hasNextPage &&
         !isLoading &&
         !isFetchingNextPage
@@ -82,27 +82,36 @@ const RoverPhotos: FC<RoverPhotosProps> = ({ rover }) => {
             {pages &&
               pages.map((page: Page) =>
                 page ? (
-                  page.data.photos.map((photo: Photo) => photo && (
-                    <ImageContainer
-                      key={photo.id}
-                      onClick={() => toggleActive(photo.id)}
-                      isActive={activePhoto === photo.id}
-                    >
-                      <Image
-                        src={photo.img_src}
-                        alt=""
-                        isActive={activePhoto === photo.id}
-                        ref={activePhoto === photo.id ? activePhotoRef : undefined}
-                      />
-                    </ImageContainer>
-                  ))
+                  page.data.photos.map(
+                    (photo: Photo) =>
+                      photo && (
+                        <ImageContainer
+                          key={photo.id}
+                          onClick={() => toggleActive(photo.id)}
+                          isActive={activePhoto === photo.id}
+                        >
+                          <Image
+                            src={photo.img_src}
+                            alt=""
+                            isActive={activePhoto === photo.id}
+                            ref={
+                              activePhoto === photo.id
+                                ? activePhotoRef
+                                : undefined
+                            }
+                          />
+                        </ImageContainer>
+                      )
+                  )
                 ) : (
                   <p>no photos</p>
                 )
               )}
           </Container>
         )}
-        <Loading ref={bottomRef}>{isFetchingNextPage && <LoadingIndicator />}</Loading>
+        <Loading ref={bottomRef}>
+          {isFetchingNextPage && <LoadingIndicator />}
+        </Loading>
       </Main>
     </>
   )
@@ -157,10 +166,13 @@ const ImageContainer = styled.div<{ isActive: boolean }>`
 
   @media screen and (min-width: 600px) {
     width: calc(50% - 8px);
-    ${({ isActive }) => (isActive ? `
+    ${({ isActive }) =>
+      isActive
+        ? `
       width: 100%;
       box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.4);
-      ` : '')}
+      `
+        : ''}
   }
 `
 
@@ -171,7 +183,7 @@ const Image = styled.img<{ isActive: boolean }>`
 
   @media screen and (min-width: 600px) {
     cursor: pointer;
-    border: ${({ isActive }) => isActive ? `4px solid black;` : ''};
+    border: ${({ isActive }) => (isActive ? `4px solid black;` : '')};
   }
 `
 
