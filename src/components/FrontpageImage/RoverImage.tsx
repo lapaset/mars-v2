@@ -30,5 +30,7 @@ const RoverImage: FC<RoverImageProps> = ({ rover, maxSol }) => {
 export default RoverImage
 
 const Image = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `

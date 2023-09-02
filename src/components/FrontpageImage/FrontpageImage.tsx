@@ -24,12 +24,10 @@ const FrontpageImage: FC<FrontpageImageProps> = ({ rover }) => {
       {meta.status === 'loading' && <LoadingIndicator />}
       {meta.status === 'error' && <p>Nasa says no :( please come back later</p>}
       {maxSol && (
-        <>
-          <StyledLink href={`${rover}?sol=${maxSol}`}>
-            <RoverImage rover={rover} maxSol={maxSol} />
-          </StyledLink>
+        <StyledLink href={`${rover}?sol=${maxSol}`}>
+          <RoverImage rover={rover} maxSol={maxSol} />
           <p>{capitaliseFirstLetter(rover)}</p>
-        </>
+        </StyledLink>
       )}
     </ImageContainer>
   )
@@ -49,7 +47,7 @@ const ImageContainer = styled.div`
   box-shadow: 0 -3px 8px rgba(255, 255, 255, 0.4);
 
   p {
-    position: relative;
+    position: absolute;
     bottom: 0;
     background: black;
     padding: 8px;
@@ -68,7 +66,10 @@ const ImageContainer = styled.div`
 
 const StyledLink = styled(Link)`
   position: relative;
-  height: 70%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 `
 
 export default FrontpageImage
