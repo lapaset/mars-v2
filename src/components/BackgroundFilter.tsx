@@ -6,9 +6,9 @@ const BackgroundFilter: FC = () => (
     <filter id="bgfilter">
       <feTurbulence baseFrequency="0.1" />
       <feColorMatrix
-        values="0 0 0 9 -4
-                0 0 2 7 -4
-                1 0 0 9 -4
+        values="0 0 0 7 -4
+                0 0 0 7 -4
+                1 0 0 7 -4
                 0 0 0 0 1"
       />
     </filter>
